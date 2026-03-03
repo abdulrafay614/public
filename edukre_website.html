@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edukre - Study from home with our experts</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --orange: #FF6B35;
+      --yellow: #FFD23F;
+      --turquoise: #4ECDC4;
+      --dark: #1A1A1D;
+      --light: #FAFAFA;
+      --gray: #6B6B6B;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 80px;
+      background: white;
+      position: relative;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--dark);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--orange);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .contact-btn {
+      background: var(--dark);
+      color: white;
+      padding: 12px 28px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .contact-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      padding: 80px 80px 60px;
+      background: white;
+      align-items: center;
+      position: relative;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px;
+      line-height: 1.15;
+      font-weight: 900;
+      margin-bottom: 24px;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .hero-text p {
+      color: var(--gray);
+      font-size: 16px;
+      line-height: 1.7;
+      margin-bottom: 32px;
+      max-width: 480px;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    .get-started-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      border: 2px solid var(--dark);
+      color: var(--dark);
+      padding: 14px 32px;
+      border-radius: 30px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      transition: all 0.3s;
+      animation: fadeInUp 0.8s ease 0.4s both;
+    }
+
+    .get-started-btn:hover {
+      background: var(--dark);
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .get-started-btn::after {
+      content: '→';
+      font-size: 18px;
+      transition: transform 0.3s;
+    }
+
+    .get-started-btn:hover::after {
+      transform: translateX(5px);
+    }
+
+    .hero-visual {
+      position: relative;
+      height: 500px;
+      animation: fadeIn 1s ease 0.3s both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .stat-card {
+      position: absolute;
+      background: white;
+      padding: 20px 24px;
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+      animation: float 3s ease-in-out infinite;
+      z-index: 10;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    .stat-card.total-students {
+      left: -40px;
+      top: 50%;
+      animation-delay: 0s;
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--orange);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--gray);
+      margin-bottom: 4px;
+    }
+
+    .stat-value {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .circle-images {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .circle-wrapper {
+      position: absolute;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+      animation: scaleIn 0.8s ease both;
+    }
+
+    @keyframes scaleIn {
+      from {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .circle-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .circle-1 {
+      width: 240px;
+      height: 240px;
+      top: 10%;
+      right: 15%;
+      border: 8px solid white;
+      animation-delay: 0.3s;
+      z-index: 3;
+    }
+
+    .circle-2 {
+      width: 180px;
+      height: 180px;
+      top: 35%;
+      right: 50%;
+      border: 6px solid white;
+      animation-delay: 0.5s;
+      z-index: 2;
+    }
+
+    .circle-3 {
+      width: 200px;
+      height: 200px;
+      bottom: 15%;
+      right: 20%;
+      border: 6px solid white;
+      animation-delay: 0.7s;
+      z-index: 4;
+    }
+
+    .accent-circle {
+      position: absolute;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .accent-yellow {
+      width: 180px;
+      height: 180px;
+      background: var(--yellow);
+      top: 5%;
+      right: 35%;
+      z-index: 1;
+      animation-delay: 0s;
+    }
+
+    .accent-turquoise {
+      width: 80px;
+      height: 80px;
+      background: var(--turquoise);
+      bottom: 25%;
+      right: 5%;
+      z-index: 5;
+      animation-delay: 1s;
+    }
+
+    .decorative-icon {
+      position: absolute;
+      animation: rotate 20s linear infinite;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { rotate: rotate(360deg); }
+    }
+
+    .icon-expand {
+      right: 0;
+      bottom: 10%;
+      font-size: 32px;
+      z-index: 6;
+    }
+
+    .quote-card {
+      position: absolute;
+      right: -60px;
+      top: 10%;
+      background: white;
+      padding: 16px 20px;
+      border-radius: 12px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+      max-width: 180px;
+      font-size: 13px;
+      line-height: 1.5;
+      z-index: 7;
+      animation: fadeInRight 0.8s ease 1s both;
+    }
+
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .quote-card::before {
+      content: '';
+      position: absolute;
+      top: -8px;
+      left: 20px;
+      width: 0;
+      height: 0;
+      border-left: 8px solid transparent;
+      border-right: 8px solid transparent;
+      border-bottom: 8px solid white;
+    }
+
+    .features {
+      padding: 100px 80px;
+      background: var(--light);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 60px;
+      max-width: 1200px;
+    }
+
+    .feature-card {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      animation: fadeInUp 0.6s ease both;
+    }
+
+    .feature-card:nth-child(1) { animation-delay: 0.1s; }
+    .feature-card:nth-child(2) { animation-delay: 0.2s; }
+
+    .feature-image {
+      width: 140px;
+      height: 100px;
+      border-radius: 16px;
+      overflow: hidden;
+      flex-shrink: 0;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    }
+
+    .feature-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .feature-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .feature-content p {
+      color: var(--gray);
+      line-height: 1.6;
+      font-size: 15px;
+    }
+
+    .testimonial {
+      background: white;
+      padding: 24px 28px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      font-style: italic;
+      color: var(--gray);
+      line-height: 1.7;
+      max-width: 400px;
+    }
+
+    @media (max-width: 1024px) {
+      nav, .hero, .features {
+        padding-left: 40px;
+        padding-right: 40px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 60px;
+      }
+
+      .hero-visual {
+        height: 400px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-text h1 {
+        font-size: 48px;
+      }
+
+      .stat-card.total-students {
+        left: 20px;
+        top: 60%;
+      }
+
+      .quote-card {
+        right: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Edukre</div>
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#review">Review</a></li>
+      <li><a href="#story">Our Story</a></li>
+    </ul>
+    <a href="#contact" class="contact-btn">Contact</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Study from home with our experts</h1>
+      <p>Learning with Experts offer a range of curated course spanning photography and much more. Advanced online teaching tools</p>
+      <button class="get-started-btn">Get Started</button>
+    </div>
+
+    <div class="hero-visual">
+      <div class="accent-circle accent-yellow"></div>
+      
+      <div class="circle-images">
+        <div class="circle-wrapper circle-1">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=400&h=400&fit=crop" alt="Student studying">
+        </div>
+        <div class="circle-wrapper circle-2">
+          <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=400&fit=crop" alt="Learning online">
+        </div>
+        <div class="circle-wrapper circle-3">
+          <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=400&fit=crop" alt="Student with laptop">
+        </div>
+      </div>
+
+      <div class="accent-circle accent-turquoise"></div>
+      <div class="decorative-icon icon-expand">⤢</div>
+
+      <div class="stat-card total-students">
+        <div class="stat-icon">👥</div>
+        <div class="stat-label">Total Students</div>
+        <div class="stat-value">12K</div>
+      </div>
+
+      <div class="quote-card">
+        "Take a look at the digital way to do lessons today"
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-image">
+          <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=300&h=200&fit=crop" alt="Future learning">
+        </div>
+        <div class="feature-content">
+          <h3>This is Future Learning.</h3>
+          <p>It's time to learn from the best photographers and industry experts.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="testimonial">
+          "The only free to know watching tutorials from experts. So we decided to let you discover yourself."
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
